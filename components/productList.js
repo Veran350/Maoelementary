@@ -1,9 +1,9 @@
-// src/components/ProductList.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);  // Add loading state
 
   // Fetch products from the backend API
   useEffect(() => {
@@ -11,11 +11,17 @@ const ProductList = () => {
       .get('http://localhost:5000/products')  // Make sure this is the correct URL for your API
       .then((response) => {
         setProducts(response.data);  // Save the products to the state
+        setLoading(false);  // Stop loading once data is fetched
       })
       .catch((error) => {
         console.error('Error fetching products:', error);
+        setLoading(false);  // Stop loading even on error
       });
   }, []); // Empty dependency array ensures this effect runs only once when the component mounts
+
+  if (loading) {
+    return <div>Loading...</div>;  // Show loading message
+  }
 
   return (
     <div>
@@ -41,3 +47,4 @@ const ProductList = () => {
 };
 
 export default ProductList;
+￼Enter
