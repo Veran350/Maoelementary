@@ -16,6 +16,19 @@ const ProductList = () => {
       });
   }, []);
 
+  const deleteProduct = (id) => {
+    axios
+      .delete(`http://localhost:5000/products/${id}`)
+      .then((response) => {
+        setProducts(products.filter((product) => product._id !== id));
+        alert('Product deleted successfully');
+      })
+      .catch((error) => {
+        console.error('Error deleting product:', error);
+        alert('Error deleting product');
+      });
+  };
+
   return (
     <div>
       <h2>Product List</h2>
@@ -44,6 +57,14 @@ const ProductList = () => {
                   </Typography>
                   <Button variant="contained" color="primary" fullWidth>
                     View More
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={() => deleteProduct(product._id)}
+                    fullWidth
+                  >
+                    Delete Product
                   </Button>
                 </CardContent>
               </Card>
