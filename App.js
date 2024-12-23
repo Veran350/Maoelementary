@@ -1,6 +1,6 @@
 import React from 'react';
-import ProductList from './components/ProductList';  // Import the ProductList component
-import CreateProduct from './components/CreateProduct';  // Import the CreateProduct component
+import CreateProduct from './components/CreateProduct';  // Import CreateProduct
+import ProductList from './components/ProductList';  // Import ProductList component
 import './App.css';  // If you have any styling for your app
 
 const App = () => {
@@ -11,7 +11,8 @@ const App = () => {
       </header>
       <main>
         <h2>Admin Panel</h2>
-        <CreateProduct />  {/* Render CreateProduct component for adding new products */}
+        <CreateProduct />  {/* Add CreateProduct component for adding new products */}
+        <h2>Product List</h2>
         <ProductList />  {/* Render ProductList component to display the list of products */}
       </main>
     </div>
