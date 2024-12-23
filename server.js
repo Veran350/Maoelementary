@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+require('dotenv').config(); // Load environment variables from .env file
 const Product = require('./models/Product'); // Import the Product model
 
 const app = express();
@@ -10,11 +11,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// MongoDB connection string (replace <db_password> with your actual MongoDB password)
-const MONGO_URI = 'mongodb+srv://Veran737:77Olaoluwa@11@cluster0.wh1hk.mongodb.net/sample_mflix?retryWrites=true&w=majority
-';
-
 // MongoDB connection
+const MONGO_URI = process.env.MONGO_URI; // Use the MongoDB URI from .env
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.log('MongoDB connection error:', err));
