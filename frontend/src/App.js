@@ -1,18 +1,12 @@
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-
-function Home() {
-  return <h1>Welcome to Maoelementary</h1>;
-}
-
-function Dashboard() {
-  return <h1>Dashboard</h1>;
-}
-
-function NotFound() {
-  return <h1>404 - Page Not Found</h1>;
-}
+import Home from './Home';
+import Dashboard from './Dashboard';
+import About from './About';
+import ProductPage from './ProductPage';
+import NotFound from './NotFound'; // This is for handling 404 errors
 
 function App() {
   return (
@@ -21,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/products" element={<ProductPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
