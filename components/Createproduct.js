@@ -1,81 +1,113 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { TextField, Button, Container, Typography } from '@mui/material';
 
 const CreateProduct = () => {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
-  const [category, setCategory] = useState('');
-  const [stock, setStock] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    price: '',
+    image: '',
+    category: '',
+    stock: ''
+  });
 
-  const handleSubmit = async (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newProduct = { name, description, price, image, category, stock };
-
-    try {
-      await axios.post('http://localhost:5000/products', newProduct);
-      alert('Product added successfully');
-      setName('');
-      setDescription('');
-      setPrice('');
-      setImage('');
-      setCategory('');
-      setStock('');
-    } catch (error) {
-      console.error('Error adding product:', error);
-    }
+    axios
+      .post('http://localhost:5000/products', formData)
+      .then((response) => {
+        console.log('Product added:', response.data);
+        // Reset form after submission
+        setFormData({
+          name: '',
+          description: '',
+          price: '',
+          image: '',
+          category: '',
+          stock: ''
+        });
+      })
+      .catch((error) => {
+        console.error('Error adding product:', error);
+      });
   };
 
   return (
-    <div>
-      <h3>Add New Product</h3>
+    <Container maxWidth="sm">
+      <Typography variant="h4" gutterBottom>
+        Create a New Product
+      </Typography>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+        <TextField
+          label="Product Name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
           required
         />
-        <textarea
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+        <TextField
+          label="Description"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
           required
         />
-        <input
+        <TextField
+          label="Price"
+          name="price"
           type="number"
-          placeholder="Price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          value={formData.price}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
           required
         />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={image}
-          onChange={(e) => setImage(e.target.value)}
+        <TextField
+          label="Image URL"
+          name="image"
+          value={formData.image}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
           required
         />
-        <input
-          type="text"
-          placeholder="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
+        <TextField
+          label="Category"
+          name="category"
+          value={formData.category}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
           required
         />
-        <input
+        <TextField
+          label="Stock Quantity"
+          name="stock"
           type="number"
-          placeholder="Stock"
-          value={stock}
-          onChange={(e) => setStock(e.target.value)}
+          value={formData.stock}
+          onChange={handleChange}
+          fullWidth
+          margin="normal"
           required
         />
-        <button type="submit">Add Product</button>
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Add Product
+        </Button>
       </form>
-    </div>
+    </Container>
   );
 };
 
