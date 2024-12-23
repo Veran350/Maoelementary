@@ -1,10 +1,8 @@
-// src/Home.js
 import React from 'react';
-import './Home.css'; // Importing the CSS file
 
 function Home() {
   return (
-    <div className="home-container">
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
       <h1>Welcome to Maoelementary</h1>
       <p>Your maoelementary-like e-commerce solution</p>
     </div>
