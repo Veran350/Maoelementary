@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, CardContent, Typography, Grid, Button, CardMedia } from '@mui/material';
+import { Grid, Card, CardContent, Typography, Button, CardMedia, CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     axios
       .get('http://localhost:5000/products')
       .then((response) => {
         setProducts(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching products:', error);
+        setLoading(false);
       });
   }, []);
 
@@ -28,6 +32,10 @@ const ProductList = () => {
         alert('Error deleting product');
       });
   };
+
+  if (loading) {
+    return <CircularProgress />;
+  }
 
   return (
     <div>
@@ -58,6 +66,11 @@ const ProductList = () => {
                   <Button variant="contained" color="primary" fullWidth>
                     View More
                   </Button>
+                  <Link to={`/edit/${product._id}`}>
+                    <Button variant="contained" color="secondary" fullWidth>
+                      Edit Product
+                    </Button>
+                  </Link>
                   <Button
                     variant="contained"
                     color="secondary"
