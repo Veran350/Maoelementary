@@ -17,7 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/about" element={<About />} />
         <Route path="/products" element={<ProductPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
       </Routes>
     </Router>
   );
