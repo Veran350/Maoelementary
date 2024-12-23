@@ -1,0 +1,19 @@
+{
+  "name": "maoelementary-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for a Shopify-like e-commerce website",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve -s .",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "serve": "^14.0.0"
+  },
+  "author": "MAOELEMENTARY",
+  "license": "MIT"
+}
