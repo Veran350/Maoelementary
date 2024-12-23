@@ -10,9 +10,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// MongoDB connection string (replace with your actual MongoDB URI)
-const MONGO_URI = 'mongodb+srv://your-mongo-uri';
+// MongoDB connection string (replace <db_password> with your actual MongoDB password)
+const MONGO_URI = 'mongodb+srv://jonathanolaoluwa02:<db_password>@cluster0.xlqex.mongodb.net/myDatabaseName';
 
+// MongoDB connection
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.log('MongoDB connection error:', err));
