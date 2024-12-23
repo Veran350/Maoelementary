@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // MongoDB connection string (replace <db_password> with your actual MongoDB password)
-const MONGO_URI = 'mongodb+srv://jonathanolaoluwa02:<db_password>@cluster0.xlqex.mongodb.net/myDatabaseName';
+const MONGO_URI = 'mongodb+srv://Veran737:77Olaoluwa@11@cluster0.wh1hk.mongodb.net/sample_mflix?retryWrites=true&w=majority
+';
 
 // MongoDB connection
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
