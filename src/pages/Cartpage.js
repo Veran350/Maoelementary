@@ -1,8 +1,11 @@
+import React from 'react';
+import { useCart } from '../context/CartContext'; // Import useCart from CartContext
+
 const CartPage = () => {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart } = useCart();  // Get cart data and removeFromCart function
 
   const getTotalPrice = () => {
-    return cart.reduce((total, item) => total + item.price, 0);
+    return cart.reduce((total, item) => total + item.price, 0);  // Calculate total price
   };
 
   return (
@@ -17,9 +20,11 @@ const CartPage = () => {
           </div>
         ))
       ) : (
-        <p>Your cart is empty.</p>
+        <p>Your cart is empty.</p>  // If cart is empty, show a message
       )}
-      <h2>Total: ${getTotalPrice()}</h2> {/* Display the total */}
+      <h2>Total: ${getTotalPrice()}</h2> {/* Display the total price */}
     </div>
   );
 };
+
+export default CartPage;
