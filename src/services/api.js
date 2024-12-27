@@ -14,3 +14,14 @@ export const registerUser = async (userData) => {
     throw error;
   }
 };
+
+// API function for user login
+export const loginUser = async (userData) => {
+  try {
+    const response = await API.post('/api/auth/login', userData);
+    return response.data;  // Contains the JWT token
+  } catch (error) {
+    console.error('Error logging in:', error.response?.data || error.message);
+    throw error;
+  }
+};
