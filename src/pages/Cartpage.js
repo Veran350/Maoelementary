@@ -1,8 +1,8 @@
 import React from 'react';
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext';  // Import useCart
 
 const CartPage = () => {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart } = useCart();  // Access cart and removeFromCart functions
 
   return (
     <div>
