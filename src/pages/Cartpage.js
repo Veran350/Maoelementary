@@ -1,8 +1,9 @@
-import React from 'react';
-import { useCart } from '../context/CartContext';  // Import useCart
-
 const CartPage = () => {
-  const { cart, removeFromCart } = useCart();  // Access cart and removeFromCart functions
+  const { cart, removeFromCart } = useCart();
+
+  const getTotalPrice = () => {
+    return cart.reduce((total, item) => total + item.price, 0);
+  };
 
   return (
     <div>
@@ -18,8 +19,7 @@ const CartPage = () => {
       ) : (
         <p>Your cart is empty.</p>
       )}
+      <h2>Total: ${getTotalPrice()}</h2> {/* Display the total */}
     </div>
   );
 };
-
-export default CartPage;
