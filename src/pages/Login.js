@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../services/api';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -6,6 +8,7 @@ const Login = () => {
     password: '',
   });
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,10 +18,18 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add the login logic (JWT authentication) here later
-    setMessage('Login functionality coming soon!');
+
+    try {
+      const data = await loginUser(formData);
+      // Store JWT token in localStorage
+      localStorage.setItem('token', data.token);
+      setMessage('Login successful!');
+      navigate('/'); // Redirect to homepage or dashboard
+    } catch (error) {
+      setMessage('Login failed. Please check your credentials.');
+    }
   };
 
   return (
