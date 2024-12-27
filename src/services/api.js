@@ -36,3 +36,14 @@ export const getProducts = async () => {
     throw error;
   }
 };
+
+// API function to fetch product by ID
+export const getProductById = async (id) => {
+  try {
+    const response = await API.get(`/api/products/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching product by ID:', error.response?.data || error.message);
+    throw error;
+  }
+};
